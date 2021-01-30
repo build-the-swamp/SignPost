@@ -16,8 +16,23 @@ client.once('ready', () => {
 
 
 client.on('message', message => {
-    if (message.content === `${prefix}translate`) {
-      message.channel.send(Object.values(data));
+    if (!message.content.startsWith(prefix + "ra") ) return;
+
+    msg = message.content.slice(4).toLowerCase()
+    msg_split = msg.split(" ") // splits the sentence into different parts
+
+    let fin_message = ""
+    
+    for(let i = 0; i < msg_split.length; i++)
+    {
+        for(let j = 0;j < msg_split[i].length; j++){
+            if(data[msg_split[i][j]])
+                fin_message = fin_message + " " + data[msg_split[i][j]]
+        }
+        message.channel.send(msg_split[i])
+        if(fin_message == " ") // checks if the message is empty
+            message.channel.send(fin_message) // sends the final message
+        fin_message = "" // resets the message so there are no repetition
     }
 })
 
