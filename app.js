@@ -50,26 +50,6 @@ client.on("message", async (message) => {
   }
 });
 
-
-function TextToGifSign(msg, message)
-{
-    message.channel.send(msg);
-    message.channel.send("https://www.handspeak.com/word/" + msg[0] + "/" + msg + ".mp4");
-}
-
-
-function TextToFingerSign(msg, message)
-{
-    let fin_message = ""
-    for (let j = 0; j < msg.length; j++) {
-        if (data[msg[j]])
-            fin_message = fin_message + " " + data[msg[j]];
-    }
-    message.channel.send(msg);
-    message.channel.send(fin_message); // sends the final message
-    fin_message = ""; // resets the message so there are no repetition
-}
-
 async function IsValidLink(link)
 {
     return new Promise((resolve, reject) => {
