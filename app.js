@@ -16,7 +16,7 @@ client.once('ready', () => {
 });
 
 
-client.on('message', message => {
+client.on('message', async message => {
     if (!message.content.startsWith(prefix + "ra") ) return;
 
     msg = message.content.slice(4).toLowerCase()
@@ -26,25 +26,24 @@ client.on('message', message => {
     console.log(msg_split)
     for(let i = 0; i < msg_split.length; i++)
     {
-        request("https://www.handspeak.com/word/" + msg_split[i][0] + "/" + msg_split[i] + ".mp4", function(error, response, body){
+        await request("https://www.handspeak.com/word/" + msg_split[i][0] + "/" + msg_split[i] + ".mp4", async function(error, response, body){
             console.error('error:', error);
             console.log('statusCode:', response && response.statusCode);
-            if(response.statusCode == 200)
-                message.channel.send("https://www.handspeak.com/word/" +  msg_split[i][0] + "/" + msg_split[i] + ".mp4");
-            else
+            if(response.statusCode == 200){
+                await message.channel.send(msg_split[i])
+                await message.channel.send("https://www.handspeak.com/word/" +  msg_split[i][0] + "/" + msg_split[i] + ".mp4");
+            }
+            else{
                 for(let j = 0;j < msg_split[i].length; j++){
                     if(data[msg_split[i][j]])
                         fin_message = fin_message + " " + data[msg_split[i][j]]
                 }
-                message.channel.send(msg_split[i])
-                if(fin_message == " ") // checks if the message is empty
-                    message.channel.send(fin_message) // sends the final message
+                await message.channel.send(msg_split[i])
+                await message.channel.send(fin_message) // sends the final message
                 fin_message = "" // resets the message so there are no repetition
+            }
         });
     }
-
-
-
 })
 
 
