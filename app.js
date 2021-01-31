@@ -7,8 +7,8 @@ const request = require("request");
 
 const TextToGifSign = require("./commands/gif-spell");
 const TextToFingerSign = require("./commands/finger-spell");
-const Add = require('./commands/add');
-const permit = require("./commands/permit");
+const Add = require("./commands/add");
+const Permit = require("./commands/permit");
 
 let data = {};
 
@@ -25,18 +25,19 @@ client.once("ready", () => {
 client.on("message", async (message) => {
   if (message.author.bot) return;
 
-  if(message.content.startsWith(prefix + "add"))
-  {
+  if (message.content.startsWith(prefix + "add")) {
     msg_split = message.content.split(" "); // splits the sentence into different parts
     msg_split.shift();
 
-    Add.execute(msg_split, message, client)
+    Add.execute(msg_split, message, client);
   }
+  console.log("Author id: ", message.author.id);
+  console.log("Admin: ", admin);
 
-  if (message.channel.type == "dm" && message.user.id == admin) {
+  if (message.author.id === admin) {
+    console.log("Confirmeeeeee");
     msg_split = message.content.split(" "); // splits the sentence into different parts
-
-    permit(msg_split, message)
+    Permit.execute(msg_split, message);
     return;
   }
 
