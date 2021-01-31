@@ -1,4 +1,4 @@
-const { prefix, token } = require("./config.json");
+const { prefix, token, admin } = require("./config.json");
 const fs = require("fs");
 const fileContents = fs.readFileSync("./ASL.json", "utf8");
 const Discord = require("discord.js");
@@ -7,6 +7,8 @@ const request = require("request");
 
 const TextToGifSign = require("./commands/gif-spell");
 const TextToFingerSign = require("./commands/finger-spell");
+const Add = require('./commands/add');
+const permit = require("./commands/permit");
 
 let data = {};
 
@@ -22,6 +24,21 @@ client.once("ready", () => {
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
+
+  if(message.content.startsWith(prefix + "add"))
+  {
+    msg_split = message.content.split(" "); // splits the sentence into different parts
+    msg_split.shift();
+
+    Add.execute(msg_split, message, client)
+  }
+
+  if (message.channel.type == "dm" && message.user.id == admin) {
+    msg_split = message.content.split(" "); // splits the sentence into different parts
+
+    permit(msg_split, message)
+    return;
+  }
 
   if (
     message.content.startsWith(prefix + "translate") ||
