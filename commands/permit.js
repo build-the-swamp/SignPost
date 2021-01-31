@@ -1,5 +1,4 @@
 // const { json } = require("body-parser");
-// const fs = require("fs");
 // let gif_add = fs.readFileSync("./commands/gifs-confirm.json", "utf8");
 // let gifs = fs.readFileSync("./commands/gifs.json", "utf8");
 
@@ -26,22 +25,20 @@
 //         let confirmed = data;
 //         confirmed[msg[1]] = gif_data[msg[1]];
 //         console.log("Data: ", gif_data[msg[1]]);
+//
 //         console.log("Confirmed: ", confirmed);
 //         fs.writeFileSync("./commands/gifs.json", JSON.stringify(confirmed));
 
 //         console.log("Gif data", gif_data);
 //         message.channel.send(confirmed[msg[1]] + " is now confirmed");
 
-        
-        
 //         let denied = gif_data;
 //         delete denied[msg[1]];
 //         fs.writeFileSync("./commands/gifs-confirm.json", JSON.stringify(denied));
 //         gif_add = fs.readFileSync("./commands/gifs-confirm.json", "utf8");
-        
+
 //         gifs = fs.readFileSync("./commands/gifs.json", "utf8");
-        
-        
+
 //         gif_data = JSON.parse(gif_add); // reparse the file since now it has become changed
 //         data = JSON.parse(gifs);
 
@@ -50,10 +47,10 @@
 //         delete denied[msg[1]];
 
 //         fs.writeFileSync("./commands/gifs-confirm.json", JSON.stringify(denied));
-        
+
 //         gifs = fs.readFileSync("./commands/gifs.json", "utf8");
 
-//         data = JSON.parse(gifs); 
+//         data = JSON.parse(gifs);
 
 //         message.channel.send(confirmed[msg[1]] + " is denied and deleted");
 //     }

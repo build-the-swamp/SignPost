@@ -105,10 +105,10 @@ client.on("message", async (message) => {
           console.log("msg_split = ", msg_split);
           if (msg_split == "") return;
           for (let i = 0; i < msg_split.length; i++) {
-            let is_valid = await IsValidLink(g_split[i].toLowerCase()); // goes and checks if the link were guessing is valid
+            let is_valid = await IsValidLink(msg_split[i].toLowerCase()); // goes and checks if the link were guessing is valid
 
             if (is_valid) {
-              TextToGifSign.execute(msg_split, message); // If there is a gif for a specific word send it
+              TextToGifSign.execute(msg_split[i], message); // If there is a gif for a specific word send it
             } else if (!is_valid) {
               if (gif_db[msg_split[i]] != undefined) {
                 // checking if we have a gif in our database
@@ -169,4 +169,19 @@ client.on("message", async (message) => {
   }
 });
 
+async function IsValidLink(link) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      request(
+        "https://www.handspeak.com/word/" + link[0] + "/" + link + ".mp4",
+        async function (error, response, body) {
+          // we request a webpage so we know if a link exists
+          if (response.statusCode == 200) {
+            resolve(true);
+          } else resolve(false);
+        }
+      );
+    }, 1500);
+  });
+}
 client.login(token);

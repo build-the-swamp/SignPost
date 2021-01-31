@@ -15,9 +15,10 @@ module.exports = {
   name: "Gif Spell",
   description: "Sends gif",
   execute(msg, message) {
-    msg = msg.toLowerCase();
+    msg = msg.toString().toLowerCase();
+    message.channel.send(msg);
     message.channel.send(
-      msg + " https://www.handspeak.com/word/" + msg[0] + "/" + msg + ".mp4"
+      "https://www.handspeak.com/word/" + msg[0] + "/" + msg + ".mp4"
     );
   },
 };
