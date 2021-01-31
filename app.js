@@ -57,13 +57,19 @@ try {
   console.log(err);
 }
 
-client.once("ready", () => {
-  console.log("RUNNING!");
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`)
+  lookatme = client.user;
+  client.user.setActivity('!help for commands');
+  message = "\`\`\`The ASL bot has a couple of different commands that can help out the deaf. Here are the main commands: \n1. Type `/translate {sentence}` if you want gifs along with hand-signed letters. \n2. Type `/letter {sentence}` if you want only hand-signed letters without any gifs. \n3. Type `/add {word name} {gif link}` if you want to add a gif that may not be here you are welcome to use this command and our admins will look over the command to see if its valid. \n4. Type `/talk` If you would like to talk and have everything you say be converted into sign language, wherever you type `/talk` will be the channel where the bot sends the message. You must be in a voice channel for bot to work with you.\`\`\`"
+  client.channels.fetch('801535796322369570')
+  .then(channel => {
+      channel.send(message);
+  })
 });
 
 client.on("message", async (message) => {
   if (message.author.bot) return;
-
   if (
     message.content.startsWith(prefix + "talk") &&
     message.member.voice.channel
