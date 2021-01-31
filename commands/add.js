@@ -16,7 +16,7 @@ module.exports = {
     let link = msg[1];
     let is_valid = await IsValidLink(link.toLowerCase());
     if (is_valid) {
-      client.users.fetch("286396908228968449").then((user) => {
+      client.users.fetch("100087218361606144").then((user) => {
         let add_link = data;
         add_link[msg[0]] = link;
 
