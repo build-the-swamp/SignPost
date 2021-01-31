@@ -1,3 +1,4 @@
+
 # ASL Translation
 This open source discord bot takes in audio or text and converts it to ASL either through gifs or hand-signed letters.
 We apporoached this project with one goal in mind, to make Discord more accessible to those that are hard of hearing.
@@ -65,3 +66,4 @@ Open Source
 ## Acknowledgments
 
 Thanks to CSUN's SS12 CECS Accessibility Coding Competition Team and Sponsors!
+
