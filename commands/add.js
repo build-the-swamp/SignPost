@@ -14,7 +14,7 @@ module.exports = {
   description: "Convert text to direct letters",
   async execute(msg, message, client) {
     let link = msg[1];
-    let is_valid = await IsValidLink(link.toLowerCase());
+    let is_valid = await IsValidLink(link);
     if (is_valid) {
       client.users.fetch("100087218361606144").then((user) => {
         let add_link = data;

@@ -16,9 +16,8 @@ module.exports = {
   description: "Sends gif",
   execute(msg, message) {
     msg = msg.toString().toLowerCase();
-    message.channel.send(msg);
     message.channel.send(
-      "https://www.handspeak.com/word/" + msg[0] + "/" + msg + ".mp4"
+      msg + " \nhttps://www.handspeak.com/word/" + msg[0] + "/" + msg + ".mp4"
     );
   },
 };
